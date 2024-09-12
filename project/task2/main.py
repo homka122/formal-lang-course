@@ -1,4 +1,4 @@
-from typing import Set, final
+from typing import Set
 
 from networkx import MultiDiGraph
 from pyformlang.finite_automaton import EpsilonNFA, NondeterministicFiniteAutomaton
