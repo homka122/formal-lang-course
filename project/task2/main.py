@@ -1,4 +1,4 @@
-from typing import Set
+from typing import Set, final
 
 from networkx import MultiDiGraph
 from pyformlang.finite_automaton import EpsilonNFA, NondeterministicFiniteAutomaton
@@ -18,6 +18,9 @@ def graph_to_nfa(
 ) -> NondeterministicFiniteAutomaton:
     nfa: NondeterministicFiniteAutomaton = (
         NondeterministicFiniteAutomaton.from_networkx(graph).remove_epsilon_transitions())
+
+    if not start_states: start_states = set(graph.nodes())
+    if not final_states: final_states = set(graph.nodes())
 
     [nfa.add_start_state(State(node)) for node in start_states]
     [nfa.add_final_state(State(node)) for node in final_states]
