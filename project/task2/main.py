@@ -27,7 +27,9 @@ def graph_to_nfa(
     if not final_states:
         final_states = set(graph.nodes())
 
-    [nfa.add_start_state(State(node)) for node in start_states]
-    [nfa.add_final_state(State(node)) for node in final_states]
+    for node in start_states:
+        nfa.add_start_state(State(node))
+    for node in final_states:
+        nfa.add_final_state(State(node))
 
     return nfa
