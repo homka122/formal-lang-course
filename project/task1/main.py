@@ -1,14 +1,15 @@
 from typing import Tuple
 import cfpq_data
-import networkx as nx
 from networkx.drawing import nx_pydot
 from dataclasses import dataclass
+
 
 @dataclass
 class GraphInfo:
     nodes_count: int
     edges_count: int
     edge_labels: list
+
 
 def get_graph_info(name: str) -> GraphInfo:
     path = cfpq_data.download(name)
@@ -24,7 +25,10 @@ def get_graph_info(name: str) -> GraphInfo:
 
     return GraphInfo(graph.number_of_nodes(), graph.number_of_edges(), result_labels)
 
-def save_two_cycles_graph(n: int, m: int, path: str, labels: Tuple[str, str] = ("A", "B")) -> None:
+
+def save_two_cycles_graph(
+    n: int, m: int, path: str, labels: Tuple[str, str] = ("A", "B")
+) -> None:
     graph = cfpq_data.labeled_two_cycles_graph(n, m, labels=labels)
     pydot_graph = nx_pydot.to_pydot(graph)
     pydot_graph.write(path)
