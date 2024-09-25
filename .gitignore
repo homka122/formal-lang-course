@@ -145,3 +145,7 @@ _minted-presentation/
 
 # Ruff
 .ruff_cache
+
+.vscode
+shared
+subprocess
